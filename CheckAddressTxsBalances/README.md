@@ -17,6 +17,8 @@ npm install dotenv async node-fetch
 
 ## Usage
 
+Rename .env-example to .end and add your CovalentHQ API Key then run:
+
 ```node
 node index.mjs
 ```

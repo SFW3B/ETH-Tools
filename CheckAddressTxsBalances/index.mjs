@@ -34,9 +34,9 @@ async function checkAddresses(file) {
       if (transactions && transactions.data.items && transactions.data.items.length > 0) {
         const balances = await getAddressBalance(address);
         const result = {};
+        result.address = address;
+        result.PrivKey = privKey;
         if (balances && balances.data.items && balances.data.items.length > 0 ) {
-          result.address = address;
-          result.PrivKey = privKey;
           for (var i = 0; i < balances.data.items.length; i++) {
             if(balances.data.items[i]['type']=='cryptocurrency' && balances.data.items[i]['balance'] > 0){
               result[`${balances.data.items[i]['contract_ticker_symbol']}`] = balances.data.items[i]['balance'];

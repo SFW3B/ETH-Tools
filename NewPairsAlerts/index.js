@@ -38,8 +38,8 @@ web3.eth.subscribe('logs', {
       const factory = log.address === uniswapFactoryAddress ? 'Uniswap' : 'Sushiswap';
       const token0 = web3.eth.abi.decodeParameter('address', log.topics[1]);
       const token1 = web3.eth.abi.decodeParameter('address', log.topics[2]);
-
-      const message = `🚀 New ${factory} Pool Created:\n\nToken 0: ${token0}\nToken 1: ${token1}`;
+      const pairAddress = web3.eth.abi.decodeParameter('address', log.data.slice(0, 66));
+      const message = `🚀 New ${factory} Pool Created:\n\nPair Address: ${pairAddress}\n\nToken 0: ${token0}\nToken 1: ${token1}`;
       sendTelegramMessage(message);
     }
   })

@@ -33,7 +33,6 @@ web3.eth.subscribe('logs', {
     console.log('Connected to logs with subscription ID:', subscriptionId);
   })
   .on('data', async (log) => {
-    console.log(log);
     if (log.topics[0] === uniswapPairCreatedTopic || log.topics[0] === sushiswapPairCreatedTopic) {
       const factory = log.address === uniswapFactoryAddress ? 'Uniswap' : 'Sushiswap';
       const token0 = web3.eth.abi.decodeParameter('address', log.topics[1]);
